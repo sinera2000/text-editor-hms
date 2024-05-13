@@ -36,16 +36,16 @@ const TextEditor = () => {
         <button onClick={handleSubmit}>Submit</button>
       </div>
 
-      <div
+      {/* <div
         style={{
           display: "inline-block",
           textAlign: "center",
 
           justifyContent: "center",
         }}
-      >
-        {parse(submittedContent)}
-      </div>
+      > */}
+      {parse(submittedContent)}
+      {/* </div> */}
     </>
   );
 };
