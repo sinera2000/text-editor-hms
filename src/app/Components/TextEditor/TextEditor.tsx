@@ -3,9 +3,6 @@ import parse from "html-react-parser";
 import React, { useState } from "react";
 import ReactQuill, { Quill } from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import ImageResize from "quill-image-resize-module-react";
-
-Quill.register("modules/imageResize", ImageResize);
 
 const TextEditor = () => {
   const [body, setBody] = useState("");
@@ -24,7 +21,6 @@ const TextEditor = () => {
   return (
     <>
       <div>
-        <h2>Text Editor</h2>
         <ReactQuill
           placeholder="Write something..."
           modules={TextEditor.modules}
@@ -36,16 +32,7 @@ const TextEditor = () => {
         <button onClick={handleSubmit}>Submit</button>
       </div>
 
-      {/* <div
-        style={{
-          display: "inline-block",
-          textAlign: "center",
-
-          justifyContent: "center",
-        }}
-      > */}
-      {parse(submittedContent)}
-      {/* </div> */}
+      <div className="ql-editor">{parse(submittedContent)}</div>
     </>
   );
 };
@@ -63,10 +50,13 @@ TextEditor.modules = {
     ],
     ["link", "image", "video"],
     ["clean"],
+    [
+      { align: "" },
+      { align: "center" },
+      { align: "right" },
+      { align: "justify" },
+    ],
   ],
-  imageResize: {
-    modules: ["Resize", "DisplaySize"],
-  },
 };
 
 TextEditor.formats = [
@@ -84,6 +74,7 @@ TextEditor.formats = [
   "link",
   "image",
   "video",
+  "align",
 ];
 
 export default TextEditor;
